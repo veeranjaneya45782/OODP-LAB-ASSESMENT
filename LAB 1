@@ -1,0 +1,53 @@
+#include <iostream>
+#include <string>
+
+class SmartSecurity {
+private:
+    std::string doorStatus;   // "locked" or "unlocked"
+    std::string windowStatus; // "open" or "closed"
+
+public:
+    // Constructor to initialize the statuses
+    SmartSecurity() {
+        doorStatus = "unlocked";
+        windowStatus = "open";
+    }
+
+    // Method to lock the door and windows
+    void lock() {
+        doorStatus = "locked";
+        windowStatus = "closed";
+        std::cout << "All doors and windows are now locked." << std::endl;
+    }
+
+    // Method to unlock all doors and windows
+    void unlockAll() {
+        doorStatus = "unlocked";
+        windowStatus = "open";
+        std::cout << "All doors and windows are now unlocked." << std::endl;
+    }
+
+    // Method to display the current status
+    void displayStatus() const {
+        std::cout << "Current Status:" << std::endl;
+        std::cout << "Door Status: " << doorStatus << std::endl;
+        std::cout << "Window Status: " << windowStatus << std::endl;
+    }
+};
+
+int main() {
+    SmartSecurity securitySystem;
+
+    // Display initial status
+    securitySystem.displayStatus();
+
+    // Lock the system
+    securitySystem.lock();
+    securitySystem.displayStatus();
+
+    // Unlock the system
+    securitySystem.unlockAll();
+    securitySystem.displayStatus();
+
+    return 0;
+}
