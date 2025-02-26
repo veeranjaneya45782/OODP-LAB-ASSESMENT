@@ -1,0 +1,62 @@
+#include <iostream>
+#include <string>
+
+class StudentRecord {
+private:
+    std::string firstName;
+    std::string middleName; // Optional
+    std::string lastName;
+    int rollNumber;
+    std::string department;
+    float cgpa;
+
+public:
+    // Constructor without middle name
+    StudentRecord(const std::string& first, const std::string& last, int roll, const std::string& dept, float gpa)
+        : firstName(first), lastName(last), rollNumber(roll), department(dept), cgpa(gpa) {
+        middleName = ""; // Set middle name to empty
+    }
+
+    // Constructor with middle name
+    StudentRecord(const std::string& first, const std::string& middle, const std::string& last, int roll, const std::string& dept, float gpa)
+        : firstName(first), middleName(middle), lastName(last), rollNumber(roll), department(dept), cgpa(gpa) {}
+
+    // Method to print student record
+    void printRecord() const {
+        std::cout << "Student Record:" << std::endl;
+        std::cout << "Name: " << firstName;
+        if (!middleName.empty()) {
+            std::cout << " " << middleName;
+        }
+        std::cout << " " << lastName << std::endl;
+        std::cout << "Roll Number: " << rollNumber << std::endl;
+        std::cout << "Department: " << department << std::endl;
+        std::cout << "CGPA: " << cgpa << std::endl;
+    }
+
+    // Method to compare CGPA with another student
+    bool hasHigherCGPA(const StudentRecord& other) const {
+        return cgpa > other.cgpa;
+    }
+};
+
+int main() {
+    // Create student records
+    StudentRecord student1("John", "Doe", 101, "Computer Science", 3.8);
+    StudentRecord student2("Jane", "A.", "Smith", 102, "Mathematics", 3.9);
+
+    // Print student records
+    student1.printRecord();
+    std::cout << std::endl;
+    student2.printRecord();
+    std::cout << std::endl;
+
+    // Compare CGPA
+    if (student1.hasHigherCGPA(student2)) {
+        std::cout << student1.firstName << " has a higher CGPA than " << student2.firstName << "." << std::endl;
+    } else {
+        std::cout << student2.firstName << " has a higher CGPA than " << student1.firstName << "." << std::endl;
+    }
+
+    return 0;
+}
